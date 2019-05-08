@@ -1,4 +1,4 @@
--- fn_getserverroles
+-- fn_getallserverroles
 -- 
 -- get all server roles
 --
@@ -10,9 +10,11 @@
 --  is_fixed_role:		0/1 fixed role according to sys.server_principals
 --                      public is not a fixed role!!
 --  is_builtin:         0/1 if role is fixed or public (e.g. no CREATE ROLE)
---  is_empty:			0/+ role does not contain members in sys.server_role_members
+--  is_empty:			0/1 role does not contain members in sys.server_role_members
 
 -- 1.0 - 07.05.2018 - DJ - Implemented as a inline TVF.
+
+
 CREATE FUNCTION [dbo].[fn_getallserverroles]()
 RETURNS TABLE 
 AS
@@ -34,6 +36,7 @@ END
 as is_empty
 from sys.server_principals sp
 where sp.type = 'R'
-  
+
+GO
 
 

@@ -36,14 +36,16 @@ AS
    ON rm.member_principal_id = d.role_principal_id
 )
 
-select distinct rp.principal_id as role_principal_id, rp.name as server_role, mp.principal_id as member_principal_id, mp.name as server_userlogin, mp.type as member_type
+select distinct rp.principal_id as role_principal_id,
+       rp.name as server_role,
+	   mp.principal_id as member_principal_id,
+	   mp.name as server_userlogin,
+	   mp.type as member_type
 from ServerRoleMembers drm
   join sys.server_principals rp on (drm.role_principal_id = rp.principal_id)
   join sys.server_principals mp on (drm.member_principal_id = mp.principal_id)
 -- order by rp.name
 
 GO
-
-
 
 
