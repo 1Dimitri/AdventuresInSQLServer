@@ -27,12 +27,12 @@ GO
 --  is_builtin:         0/1 if role is fixed or public (e.g. no CREATE ROLE)
 --  is_empty:			0/1 role does not contain members in sys.database_role_members
 
--- 1.0 - 13.05.2018 - DJ - Implemented as a inline TVF.
+-- 1.0 - 13.05.2019 - DJ - Implemented as a inline TVF.
 CREATE FUNCTION [dbo].[fn_getalldatabaseroles]()
 RETURNS TABLE 
 AS
 RETURN
-select sp.principal_id,sp.name as server_role, sp.is_fixed_role as is_fixed_role, 
+select sp.principal_id,sp.name as database_role, sp.is_fixed_role as is_fixed_role, 
 CASE WHEN 
   sp.is_fixed_role=1 or sp.name='public' 
   THEN 1
