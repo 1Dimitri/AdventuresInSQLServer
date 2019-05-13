@@ -1,7 +1,4 @@
-use [mydatabase]
-go
-
--- sp_createsql_databaserole
+-- sp_createsql_serverrole
 --
 -- generate statements to recreate ROLE memberships and permissions
 --
@@ -12,32 +9,29 @@ go
 --      the rowset allows to recreate server roles, add their members and assign permissions to these server roles
 
 -- require:
---  ITVF fn_getdatabaserolemembers()
---  ITVF fn_getdetaileddatabaserolepermissions()
---
--- 1.0 - DJ - 13.05.2019
-CREATE PROCEDURE [dbo].[sp_createsql_databaserole] 
+--  ITVF fn_getserverrolemembers()
+--  ITVF fn_getdetailedserverrolepermissions()
+ 
+CREATE PROCEDURE [dbo].[sp_createsql_serverrole] 
 
 AS
 BEGIN
 	SET NOCOUNT ON;
 
-	select '-- non databases roles creation' as sql_statement
+	select '-- non built-in server roles creation' as sql_statement
 	UNION ALL
-	select 'CREATE ROLE '+QUOTENAME(database_role,'[')  from fn_getalldatabaseroles()
+	select 'CREATE SERVER ROLE '+QUOTENAME(server_role,'[')  from fn_getallserverroles()
 	where is_builtin=0 
 	UNION ALL
 	select ' -- Memberships'
 	UNION ALL
-	select 'ALTER ROLE '+QUOTENAME(database_role,'[')+' ADD MEMBER '+QUOTENAME(database_user,'[')  from fn_getdatabaserolemembers()
+	select 'ALTER SERVER ROLE '+QUOTENAME(server_role,'[')+' ADD MEMBER '+QUOTENAME(server_userlogin,'[')  from fn_getserverrolemembers()
 	where member_principal_id != 1  --sa: Cannot use the special principal 'sa'.
 	UNION ALL 
 	select '-- permissions'
 	UNION ALL
-	select distinct sql_permission+' '+sql_statement+COALESCE(' ON '+objectname,'')+' TO '+QUOTENAME(databaseuser_name ,'[') collate database_default 	from fn_getdetaileddatabaserolepermissions()
+	select sql_permission+' '+sql_statement+' TO '+QUOTENAME(userlogin_name ,'[') collate database_default 	from fn_getdetailedserverrolepermissions()
 
 
 END
 GO
-
-
