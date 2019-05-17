@@ -12,7 +12,7 @@
 --  ITVF fn_getserverrolemembers()
 --  ITVF fn_getdetailedserverrolepermissions()
  
-CREATE PROCEDURE [dbo].[sp_createsql_serverrole] 
+CREATE PROCEDURE [dbo].[dsp_createsql_serverrole] 
 
 AS
 BEGIN
