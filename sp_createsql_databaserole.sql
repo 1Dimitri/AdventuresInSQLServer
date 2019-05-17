@@ -16,7 +16,7 @@ go
 --  ITVF fn_getdetaileddatabaserolepermissions()
 --
 -- 1.0 - DJ - 13.05.2019
-CREATE PROCEDURE [dbo].[sp_createsql_databaserole] 
+CREATE PROCEDURE [dbo].[dsp_createsql_databaserole] 
 
 AS
 BEGIN
