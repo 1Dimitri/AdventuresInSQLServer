@@ -14,7 +14,7 @@ BEGIN
     SET @rowprocessed = @@rowcount 
     COMMIT
     PRINT "4000 rows processed"
-    IF @rowcount = 0
+    IF @rowprocessed = 0
     BEGIN
         SET @more = 0
     END
