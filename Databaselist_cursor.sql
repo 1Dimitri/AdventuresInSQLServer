@@ -11,7 +11,11 @@ DECLARE @DBListCursor as CURSOR;
 SET @DBListCursor = CURSOR FORWARD_ONLY FOR
 SELECT Name, database_id
   FROM sys.databases
+  -- no system databases
 -- WHERE database_id > 4
+ -- no system databases and not this database I'm in
+--  WHERE database_id > 4 AND database_id<>DB_ID()
+ 
  
 OPEN @DBListCursor;
 FETCH NEXT FROM @DBListCursor INTO @DBName, @db_id
