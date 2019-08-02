@@ -87,7 +87,7 @@ MsgText nvarchar(50)
 
 -- Add the index 
 -- partitiooned against the datetime2 field
-ALTER TABLE tbl_msgs ADD CONSTRAINT PK_Orders PRIMARY KEY Clustered (CreatedAt, MsgSequenceNumber)
+ALTER TABLE tbl_msgs ADD CONSTRAINT PK_Msgs PRIMARY KEY Clustered (CreatedAt, MsgSequenceNumber)
 ON ps_3filegroups (CreatedAt);
 GO
 
