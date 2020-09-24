@@ -2,6 +2,8 @@
 -- https://support.microsoft.com/en-us/help/317375/a-transaction-log-grows-unexpectedly-or-becomes-full-in-sql-server
 -- see paragraph:
 -- How  locate queries that consume a large amount of log space in SQL Server 2005 and later versions
+--
+-- if you are not in a hurry mode, but try to catch future statements, have a look at xevent directory, xe_db_size_changes.sql for a way to record events with SQL statements
 SELECT sesstran.session_id AS [spid]
 , DB_NAME(dbtran.database_id) AS [dbname],
 QUOTENAME(DB_NAME(sqltxt.dbid)) + N'.' + QUOTENAME(OBJECT_SCHEMA_NAME(sqltxt.objectid, sqltxt.dbid)) + N'.' + QUOTENAME(OBJECT_NAME(sqltxt.objectid, sqltxt.dbid)) AS sql_object
