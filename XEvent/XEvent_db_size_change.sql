@@ -1,5 +1,7 @@
 
 -- getting statement which create change in database files change
+-- changes mean: growth or shrink
+-- database files means mdf and ldf
 
 CREATE EVENT SESSION [xe_dbsize_changes] ON SERVER 
 ADD EVENT sqlserver.database_file_size_change(
