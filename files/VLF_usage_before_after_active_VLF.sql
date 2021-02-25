@@ -1,5 +1,8 @@
 -- from
 -- https://docs.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-db-log-info-transact-sql?view=sql-server-ver15
+
+-- doesn't work in SQL Server 2014
+
 use [mydatabase]
 
 ;WITH cte_vlf AS (
