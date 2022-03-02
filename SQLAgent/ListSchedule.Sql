@@ -83,4 +83,4 @@ FROM	 [msdb].[dbo].[sysjobs] AS [jobs] WITh(NOLOCK)
 		 LEFT OUTER JOIN [msdb].[dbo].[sysschedules] AS [schedule] WITh(NOLOCK) 
 				 ON [jobschedule].[schedule_id] = [schedule].[schedule_id] 
 -- WHERE [jobs].[name] LIKE ' Start of jobname%'
-		
+-- WHERE [jobs].enabled = 1		AND [jobs].[name] LIKE 'Bkp%' AND [schedule].enabled = 1		
